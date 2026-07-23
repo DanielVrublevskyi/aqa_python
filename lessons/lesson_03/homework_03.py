@@ -7,9 +7,7 @@ alice_in_wonderland = ('"Would you tell me, please, which way I ought to go from
                        '"—— so long as I get somewhere," Alice added as an explanation.\n'
                        '"Oh, you\'re sure to do that," said the Cat, "if you only walk long enough."')
 # task 02 == Знайдіть та відобразіть всі символи одинарної лапки (') у тексті
-for symbol in alice_in_wonderland:
-    if symbol == "'":
-        print(symbol)
+print(alice_in_wonderland.count("'"))
 # task 03 == Виведіть змінну alice_in_wonderland на друк
 print(alice_in_wonderland)
 
@@ -25,10 +23,9 @@ print(alice_in_wonderland)
 моря становить 37 800 км2. Яку площу займають Чорне та Азов-
 ське моря разом?
 """
-black_sea = 436402
-azov_sea = 37800
-total_square = black_sea + azov_sea
-print(total_square)
+black_sea_sq = 436402
+azov_sea_sq = 37800
+print(f"Площа Чорного моря становить {black_sea_sq} км2, а площа Азовського моря становить {azov_sea_sq} км2. Яку площу займають Чорне та Азовське моря разом?")
 
 # task 05
 """
@@ -84,13 +81,18 @@ print(19224 % 9)
 Торт            1           350 грн
 Вода            3           21 грн
 """
-pizza_big = 4 * 274
-pizza_mid = 2 * 218
-juice = 4 * 35
-cake = 1 * 350
-water = 3 * 21
-sum = pizza_big + pizza_mid + juice + cake + water
-print(sum)
+pizza_big = 274
+pizza_big_am = 4
+pizza_mid = 218
+pizza_mid_am = 2
+juice = 35
+juice_am = 4
+cake = 350
+cake_am = 1
+water = 21
+water_am = 3
+sum_order = pizza_big * pizza_big_am + pizza_mid * pizza_mid_am + juice * juice_am + cake * cake_am + water * water_am
+print(sum_order)
 
 # task 09
 """
