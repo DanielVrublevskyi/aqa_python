@@ -50,9 +50,9 @@ print(f"літера 'h' зустрічається у тексті {h_count} р
 """ Виведіть, скільки слів у тексті починається з Великої літери?
 """
 print("task 05")
-list_1 = adwentures_of_tom_sawer.split()
+text_splitted_by_space = adwentures_of_tom_sawer.split()
 i = 0
-for word in list_1:
+for word in text_splitted_by_space:
     if word.istitle():
         i += 1
 
@@ -71,7 +71,7 @@ print(f"{ind_2} - позиція, на якій слово Tom зустріча�
 Збережіть результат у змінній adwentures_of_tom_sawer_sentences
 """
 print("task 07")
-adwentures_of_tom_sawer_sentences = adwentures_of_tom_sawer.replace(". ", ".\n")
+adwentures_of_tom_sawer_sentences = adwentures_of_tom_sawer.split(". ")
 print(adwentures_of_tom_sawer_sentences)
 
 # task 08
@@ -79,20 +79,24 @@ print(adwentures_of_tom_sawer_sentences)
 Перетворіть рядок у нижній регістр.
 """
 print("task 08")
-print("четверте речення з adwentures_of_tom_sawer_sentences:", adwentures_of_tom_sawer_sentences.split(".\n")[3])
+print("четверте речення з adwentures_of_tom_sawer_sentences:", adwentures_of_tom_sawer_sentences[3])
 
 # task 09
 """ Перевірте чи починається якесь речення з "By the time".
 """
 print("task 09")
-print(adwentures_of_tom_sawer_sentences.startswith("By the time"))
+if_found = False
+for sentence in adwentures_of_tom_sawer_sentences:
+    if sentence.startswith("By the time"):
+        if_found = True
+        break
+    print(if_found)
 
 # task 10
 """ Виведіть кількість слів останнього речення з adwentures_of_tom_sawer_sentences.
 """
 print("task 10")
-spl_to_list = adwentures_of_tom_sawer_sentences.split("\n")
 
-last_sent = spl_to_list[len(adwentures_of_tom_sawer_sentences.split("\n")) - 1]
+last_sent = adwentures_of_tom_sawer_sentences[-1]
 count = len(last_sent.split(" "))
 print(f"{count} - кількість слів останнього речення з adwentures_of_tom_sawer_sentences")
