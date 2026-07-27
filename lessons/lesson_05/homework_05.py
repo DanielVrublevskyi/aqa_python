@@ -48,9 +48,10 @@ search_criteria = (2017, 1.6, 35000)
 
 
 def search_car_by_criteria(search):
+    min_year, min_v, max_price = search
     cars_list = [(car_key, car_value)
                  for car_key, car_value in car_data.items()
-                 if car_value[1] >= search[0] and car_value[2] >= search[1] and car_value[4] <= search[2]]
+                 if car_value[1] >= min_year and car_value[2] >= min_v and car_value[4] <= max_price]
     cars_list_sorted = sorted(cars_list, key=lambda x: x[1][4])
     return cars_list_sorted[:5]
 
