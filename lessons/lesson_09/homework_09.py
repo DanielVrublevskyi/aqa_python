@@ -45,10 +45,10 @@ class Rhombus:
             else:
                 raise AttributeError(f"'{key}' should be more than 0")
         elif key == 'corner_a':
-            if value is not None and not isinstance(value, (int, float)):
-                raise AttributeError(f"'{key}' should be a int or float or None")
             if value is None:
                 return
+            if not isinstance(value, (int, float)):
+                raise AttributeError(f"'{key}' should be a int or float or None")
             if 0 < value < 180:
                 self.__dict__[key] = value
                 self.__dict__['corner_b'] = 180 - value
@@ -56,10 +56,10 @@ class Rhombus:
                 raise AttributeError(f"'{key}' should be between 0 and 180")
 
         elif key == 'corner_b':
-            if value is not None and not isinstance(value, (int, float)):
-                raise AttributeError(f"'{key}' should be a int or float or None")
             if value is None:
                 return
+            if not isinstance(value, (int, float)):
+                raise AttributeError(f"'{key}' should be a int or float or None")
             if 0 < value < 180:
                 self.__dict__[key] = value
                 self.__dict__['corner_a'] = 180 - value
