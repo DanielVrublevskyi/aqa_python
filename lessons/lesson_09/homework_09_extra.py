@@ -16,8 +16,10 @@ class Passenger:
 
 class Carriage:
     capacity = 10
-    number = 0
+
     def __init__(self, passengers: list = None):
+        self.number = None
+
         if passengers is None:
             self.passengers = []
         else:
