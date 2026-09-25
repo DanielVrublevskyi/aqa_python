@@ -1,7 +1,7 @@
 from core.config import PROJECT_DIR
 from core.utils.logger import get_file_logger
 import json
-file_logger = get_file_logger()
+file_logger = get_file_logger("login_system.log")
 test_dir = PROJECT_DIR / "lessons" / "lesson_15"
 json_1 = test_dir / "localizations_en.json"
 json_2 = test_dir / "localizations_ru.json"
