@@ -4,7 +4,7 @@
 Дано функцію, напишіть набір тестів для неї.
 """
 
-from core.utils.logger import file_logger
+from core.utils.logger import get_file_logger
 
 def log_event(username: str, status: str):
     """
@@ -21,6 +21,7 @@ def log_event(username: str, status: str):
     log_message = f"Login event - Username: {username}, Status: {status}"
 
     # Логування події
+    file_logger = get_file_logger()
     if status == "success":
         file_logger.info(log_message)
     elif status == "expired":

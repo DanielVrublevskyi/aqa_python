@@ -14,12 +14,15 @@ console_handler.setFormatter(formatter)
 cli_logger.addHandler(console_handler)
 
 # set up file_logger with own Level, as FileHandler in spec file, with common format
-file_logger = logging.getLogger("file_logger")
-file_logger.setLevel(logging.DEBUG)
-file_logger.propagate = False
+def get_file_logger():
+    file_logger = logging.getLogger("file_logger")
+    file_logger.setLevel(logging.DEBUG)
+    file_logger.propagate = False
 
-file_handler = logging.FileHandler("login_system.log")
-file_handler.setLevel(logging.INFO)
-file_handler.setFormatter(formatter)
+    file_handler = logging.FileHandler("login_system.log")
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
 
-file_logger.addHandler(file_handler)
+    file_logger.addHandler(file_handler)
+
+    return file_logger
