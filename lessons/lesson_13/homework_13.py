@@ -21,7 +21,7 @@ def log_event(username: str, status: str):
     log_message = f"Login event - Username: {username}, Status: {status}"
 
     # Логування події
-    file_logger = get_file_logger()
+    file_logger = get_file_logger("login_system.log")
     if status == "success":
         file_logger.info(log_message)
     elif status == "expired":
