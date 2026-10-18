@@ -43,7 +43,7 @@ class RequestUtils:
         message = f"{response.request.method}: {response.request.url}"
         cli_logger.info(message)
         if self.file_logger is not None:
-            self.file_logger.info(message)
+            self.file_logger.info(f"{message}\nStatus code: {response.status_code}")
 
         if exp_status_code is not None:
             assert response.status_code == exp_status_code, f'Status code should be {exp_status_code}'
