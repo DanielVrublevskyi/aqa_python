@@ -1,13 +1,14 @@
 import logging
+import sys
 # create common format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('\n%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # set up cli_logger with own Level, as StreamHandler, with common format
 cli_logger = logging.getLogger("cli_logger")
 cli_logger.setLevel(logging.DEBUG)
 cli_logger.propagate = False
 
-console_handler = logging.StreamHandler()
+console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setLevel(logging.INFO)
 console_handler.setFormatter(formatter)
 
