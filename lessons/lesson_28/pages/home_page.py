@@ -1,8 +1,8 @@
 from playwright.sync_api import Page, expect
 
 from lessons.lesson_28.pages.garage_page import GaragePage
-from lessons.lesson_28.pages.login_form import LoginForm
-from lessons.lesson_28.pages.registration_form import RegistrationForm
+from lessons.lesson_28.forms.login_form import LoginForm
+from lessons.lesson_28.forms.registration_form import RegistrationForm
 
 
 class HomePage:
@@ -25,6 +25,9 @@ class HomePage:
         self.instagram_link = page.locator("span.icon-instagram")
         self.linkedin_link = page.locator("span.icon-linkedin")
 
+        self.login_form = LoginForm(self.page)
+        self.registration_form = RegistrationForm(self.page)
+
     def assert_home_page_is_opened(self):
         expect(self.hillel_logo).to_be_visible()
         expect(self.home_button).to_be_visible()
@@ -35,15 +38,14 @@ class HomePage:
         expect(self.video).to_be_visible()
         expect(self.sign_up_button).to_be_visible()
 
-    def click_sign_up(self) -> RegistrationForm:
+    def click_sign_up(self):
         self.sign_up_button.click()
-        return RegistrationForm(self.page)
 
     def click_guest_login(self) -> GaragePage:
         self.guest_login_button.click()
         return GaragePage(self.page)
 
-    def click_sign_in(self) -> LoginForm:
+    def click_sign_in(self):
         self.sign_in_button.click()
-        return LoginForm(self.page)
+
 
