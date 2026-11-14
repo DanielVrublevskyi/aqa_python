@@ -80,3 +80,4 @@ pipeline {
         }
     }
 }
+// Homework 31 - Jenkins UI automation.
