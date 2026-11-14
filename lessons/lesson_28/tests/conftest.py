@@ -1,3 +1,5 @@
+import os
+
 import pytest
 import allure
 from playwright.sync_api import sync_playwright
@@ -7,7 +9,7 @@ from playwright.sync_api import sync_playwright
 def browser():
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,
+            headless=os.getenv("CI") == "true",
             args=["--start-maximized"]
         )
         yield browser
