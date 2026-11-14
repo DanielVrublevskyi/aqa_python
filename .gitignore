@@ -222,3 +222,5 @@ __marimo__/
 # Allure reports
 allure-results/
 allure-report/
+
+junit-results.xml
