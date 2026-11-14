@@ -1,4 +1,5 @@
 import pytest
+import allure
 from playwright.sync_api import sync_playwright
 
 
@@ -22,4 +23,11 @@ def page(browser):
 
     yield page
 
-    context.close()
+    try:
+        allure.attach(
+            page.screenshot(full_page=True),
+            name="Final screenshot",
+            attachment_type=allure.attachment_type.PNG
+        )
+    finally:
+        context.close()
