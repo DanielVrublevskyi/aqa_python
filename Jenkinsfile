@@ -24,7 +24,14 @@ pipeline {
             steps {
                 sh '''
                     python3 -m venv .venv
-                    .venv/bin/python -m pip install pytest playwright==1.65.2 allure-pytest faker requests
+                    .venv/bin/python -m pip install \
+                        pytest \
+                        playwright==1.65.2 \
+                        allure-pytest \
+                        faker \
+                        requests \
+                        python-dotenv
+
                     .venv/bin/python -m playwright install chromium
                 '''
             }
@@ -32,10 +39,22 @@ pipeline {
 
         stage('Run UI Tests') {
             steps {
-                sh '''
-                    rm -rf allure-results junit-results.xml
-                    .venv/bin/python -m pytest lessons/lesson_28/tests/test_homework_28.py --alluredir=allure-results --junitxml=junit-results.xml
-                '''
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'qauto-test-login',
+                        usernameVariable: 'QAUTO_TEST_EMAIL',
+                        passwordVariable: 'QAUTO_TEST_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        rm -rf allure-results junit-results.xml
+
+                        .venv/bin/python -m pytest \
+                            lessons/lesson_28/tests/test_homework_28.py \
+                            --alluredir=allure-results \
+                            --junitxml=junit-results.xml
+                    '''
+                }
             }
         }
     }
@@ -45,6 +64,10 @@ pipeline {
             script {
                 if (fileExists('junit-results.xml')) {
                     junit testResults: 'junit-results.xml'
+                }
+
+                if (fileExists('allure-results')) {
+                    allure results: [[path: 'allure-results']]
                 }
             }
 
