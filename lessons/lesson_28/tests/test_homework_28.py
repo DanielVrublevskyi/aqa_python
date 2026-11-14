@@ -1,3 +1,4 @@
+import allure
 from lessons.lesson_28.pages.garage_page import GaragePage
 from lessons.lesson_28.pages.home_page import HomePage
 from lessons.lesson_28.data_for_tests import generate_email, generate_password, \
@@ -7,28 +8,37 @@ from lessons.lesson_28.config import TEST_EMAIL, TEST_PASSWORD
 
 class TestHomePageSanity:
 
+    @allure.feature("Home Page")
     def test_home_page(self, page):
         home_page = HomePage(page)
-        home_page.assert_home_page_is_opened()
+
+        with allure.step("Verify that home page is opened"):
+            home_page.assert_home_page_is_opened()
 
     def test_registration(self, page):
         home_page = HomePage(page)
-        home_page.click_sign_up()
 
-        name = generate_first_name()
-        last_name = generate_last_name()
-        email = generate_email()
-        password = generate_password()
+        with allure.step("Open registration form"):
+            home_page.click_sign_up()
 
-        home_page.registration_form.input_name(name)
-        home_page.registration_form.input_last_name(last_name)
-        home_page.registration_form.input_email(email)
-        home_page.registration_form.input_password(password)
-        home_page.registration_form.input_repeat_password(password)
-        home_page.registration_form.click_register_button()
+        with allure.step("Fill registration form"):
+            name = generate_first_name()
+            last_name = generate_last_name()
+            email = generate_email()
+            password = generate_password()
 
-        garage_page = GaragePage(page)
-        garage_page.assert_garage_page_is_opened()
+            home_page.registration_form.input_name(name)
+            home_page.registration_form.input_last_name(last_name)
+            home_page.registration_form.input_email(email)
+            home_page.registration_form.input_password(password)
+            home_page.registration_form.input_repeat_password(password)
+
+        with allure.step("Submit registration"):
+            home_page.registration_form.click_register_button()
+
+        with allure.step("Verify Garage page is opened"):
+            garage_page = GaragePage(page)
+            garage_page.assert_garage_page_is_opened()
 
     def test_guest_login(self, page):
         home_page = HomePage(page)

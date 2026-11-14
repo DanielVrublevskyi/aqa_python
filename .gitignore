@@ -218,3 +218,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 /practice
+
+# Allure reports
+allure-results/
+allure-report/
+
+junit-results.xml
