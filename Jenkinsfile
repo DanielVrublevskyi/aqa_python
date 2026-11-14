@@ -3,10 +3,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Install Dependencies') {
             steps {
-                checkout scm
-                sh 'git rev-parse --short HEAD'
+                sh '''
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install pytest playwright allure-pytest faker
+                '''
             }
         }
     }

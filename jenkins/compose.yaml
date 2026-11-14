@@ -1,7 +1,8 @@
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts-jdk21
+    build: .
+    image: jenkins-homework-python:1.0
     container_name: jenkins-homework
     ports:
       - "127.0.0.1:8080:8080"
