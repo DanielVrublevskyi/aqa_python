@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -16,6 +17,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Clean previous test results
+                sh 'rm -rf allure-results allure-report junit-results.xml'
+
+                // Download project from GitHub
                 checkout scm
             }
         }
@@ -24,6 +29,7 @@ pipeline {
             steps {
                 sh '''
                     python3 -m venv .venv
+
                     .venv/bin/python -m pip install \
                         pytest \
                         playwright==1.65.2 \
@@ -47,8 +53,6 @@ pipeline {
                     )
                 ]) {
                     sh '''
-                        rm -rf allure-results junit-results.xml
-
                         .venv/bin/python -m pytest \
                             lessons/lesson_28/tests/test_homework_28.py \
                             --alluredir=allure-results \
